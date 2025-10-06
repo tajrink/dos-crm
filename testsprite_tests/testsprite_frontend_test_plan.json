@@ -1,0 +1,658 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Login with Valid Credentials",
+    "description": "Verify the single-user authentication system allows login with correct credentials and JWT token is issued.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter valid username and password"
+      },
+      {
+        "type": "action",
+        "description": "Submit login form"
+      },
+      {
+        "type": "assertion",
+        "description": "User is authenticated and redirected to dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "JWT token is saved and used for subsequent requests"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Login Failure with Invalid Credentials",
+    "description": "Verify the authentication system rejects invalid login attempts and shows appropriate error toast.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter invalid username or password"
+      },
+      {
+        "type": "action",
+        "description": "Submit login form"
+      },
+      {
+        "type": "assertion",
+        "description": "User remains on login page"
+      },
+      {
+        "type": "assertion",
+        "description": "Error toast notification about invalid credentials is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Password Reset Functionality",
+    "description": "Verify password reset request can be initiated and reset link/email is sent through SMTP configuration.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Click ‘Forgot Password’ link"
+      },
+      {
+        "type": "action",
+        "description": "Enter registered user email and submit"
+      },
+      {
+        "type": "assertion",
+        "description": "Notification confirms reset email sent"
+      },
+      {
+        "type": "assertion",
+        "description": "Check SMTP logs or email client to verify email delivery"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Dashboard Data Display and Real-time Updates",
+    "description": "Verify the dashboard loads KPIs, charts, and notifications correctly and updates data in real-time.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login and navigate to dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "KPIs like revenue, client count, project deadlines are displayed correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Charts display accurate trends for revenue and other stats"
+      },
+      {
+        "type": "action",
+        "description": "Trigger a backend data change (e.g. add new invoice) via API"
+      },
+      {
+        "type": "assertion",
+        "description": "Dashboard reflects update in real-time without refresh"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Client CRUD Operations and Validation",
+    "description": "Ensure full create, read, update, delete operations for client profiles with Zod validation and unique constraints.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Clients page"
+      },
+      {
+        "type": "action",
+        "description": "Click ‘Add Client’ and input valid client data"
+      },
+      {
+        "type": "action",
+        "description": "Submit form and verify client is listed"
+      },
+      {
+        "type": "assertion",
+        "description": "Form validates mandatory fields and correct formats"
+      },
+      {
+        "type": "action",
+        "description": "Edit existing client’s details and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Client details update is reflected immediately"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to add client with duplicate unique field (e.g. email)"
+      },
+      {
+        "type": "assertion",
+        "description": "Unique constraint error is shown and prevents submission"
+      },
+      {
+        "type": "action",
+        "description": "Delete a client and confirm removal from list"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Project Management Kanban Drag-and-Drop",
+    "description": "Verify project status updates via drag-and-drop on Kanban board with real-time sync.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Projects page and load Kanban board view"
+      },
+      {
+        "type": "assertion",
+        "description": "Projects are displayed in their current status columns"
+      },
+      {
+        "type": "action",
+        "description": "Drag a project card to a different status column"
+      },
+      {
+        "type": "assertion",
+        "description": "Visual move is successful with UI feedback"
+      },
+      {
+        "type": "assertion",
+        "description": "Project status is updated in backend and reflected in database"
+      },
+      {
+        "type": "action",
+        "description": "Verify other tabs or views reflect updated project status immediately"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Invoice Creation with PDF Generation and Partial Payments",
+    "description": "Verify creation of invoices linked to projects/clients, generation of PDF with correct layout, and handling partial payments.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Invoices page"
+      },
+      {
+        "type": "action",
+        "description": "Create a new invoice, associate it with a client and project, input valid line items"
+      },
+      {
+        "type": "action",
+        "description": "Submit invoice and generate PDF"
+      },
+      {
+        "type": "assertion",
+        "description": "PDF matches professionally formatted layout with correct fonts and borders"
+      },
+      {
+        "type": "action",
+        "description": "Log a partial payment against the invoice"
+      },
+      {
+        "type": "assertion",
+        "description": "Invoice payment status updates to partial paid"
+      },
+      {
+        "type": "action",
+        "description": "Send automated payment reminder email and verify email delivery"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Feature Catalog CRUD with Price Inputs and Quote Addition",
+    "description": "Verify management of reusable service features including create, update, delete and addition to project quotes with customizable pricing.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Features Catalog page"
+      },
+      {
+        "type": "action",
+        "description": "Add a new feature with name, description, category, and default price"
+      },
+      {
+        "type": "assertion",
+        "description": "Feature appears in the catalog list"
+      },
+      {
+        "type": "action",
+        "description": "Edit feature details and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Updated details are reflected properly"
+      },
+      {
+        "type": "action",
+        "description": "Add feature to a project quotation with custom price override"
+      },
+      {
+        "type": "assertion",
+        "description": "Project quote includes feature and custom price is correctly calculated"
+      },
+      {
+        "type": "action",
+        "description": "Delete a feature and verify removal from catalog"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Budget Tracking with Expense Logging and Overage Alerts",
+    "description": "Verify monthly and quarterly budget setup, expense logging, variance calculations, and alert on over 10% expense over allocation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Budgets page"
+      },
+      {
+        "type": "action",
+        "description": "Create budget entries for a category with amount and time period"
+      },
+      {
+        "type": "action",
+        "description": "Log expenses against budgets"
+      },
+      {
+        "type": "assertion",
+        "description": "Remaining budget and variance are calculated correctly"
+      },
+      {
+        "type": "action",
+        "description": "Add expense exceeding 10% of budget allocation"
+      },
+      {
+        "type": "assertion",
+        "description": "Overage alert notification triggers and prevents negative remaining balance"
+      },
+      {
+        "type": "assertion",
+        "description": "Calendar integration shows budget and expense deadlines"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Salary Management with Payment History and Receipt Upload",
+    "description": "Verify creation and editing of employee salary records, monthly and annual summaries, payment logging, and receipt file upload with size limits.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Salaries page"
+      },
+      {
+        "type": "action",
+        "description": "Add a new salary entry for employee with monthly and annual amounts"
+      },
+      {
+        "type": "assertion",
+        "description": "Salary record appears with correct summary calculations"
+      },
+      {
+        "type": "action",
+        "description": "Upload salary payment receipt file under 10MB"
+      },
+      {
+        "type": "assertion",
+        "description": "File upload succeeds and URL is stored in Supabase Storage"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to upload exceeding 10MB file and verify rejection with error toast"
+      },
+      {
+        "type": "action",
+        "description": "Edit existing salary record and save updates"
+      },
+      {
+        "type": "assertion",
+        "description": "Changes persist and are shown in payment history"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Team Request Creation, Approval Workflow, and Urgency Notification",
+    "description": "Verify internal team request creation with urgency levels, status updates, Kanban board tracking, approval process, and notification triggers.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Team Requests page"
+      },
+      {
+        "type": "action",
+        "description": "Create a new request with details and urgency set to high"
+      },
+      {
+        "type": "assertion",
+        "description": "Request appears in Kanban board under ‘Pending Approval’"
+      },
+      {
+        "type": "action",
+        "description": "Approve request and move it to ‘In Progress’ status"
+      },
+      {
+        "type": "assertion",
+        "description": "Status update reflected in Kanban and backend"
+      },
+      {
+        "type": "assertion",
+        "description": "Urgency-based notification is sent with due date reminders"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Reports Filtering, Chart Visualization and Export",
+    "description": "Verify detailed filtering of reports, rendering of charts with Recharts, and exporting filtered data in CSV, JSON, and PDF formats.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Reports page"
+      },
+      {
+        "type": "action",
+        "description": "Apply filters such as date ranges, client type, employee performance"
+      },
+      {
+        "type": "assertion",
+        "description": "Report data and charts update according to filter criteria"
+      },
+      {
+        "type": "action",
+        "description": "Export current filtered data in CSV format"
+      },
+      {
+        "type": "assertion",
+        "description": "Exported CSV file matches data displayed in table including sort order"
+      },
+      {
+        "type": "action",
+        "description": "Export filtered data to PDF and JSON formats similarly"
+      },
+      {
+        "type": "assertion",
+        "description": "Exported files contain accurate data and formatting"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Settings Management with Theme Toggle Persistence",
+    "description": "Verify settings updates for company info, tax rates, SMTP email config, backups, and UI theme toggle with persistence across sessions.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Settings page"
+      },
+      {
+        "type": "action",
+        "description": "Update company profile fields and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Settings persist after page reload"
+      },
+      {
+        "type": "action",
+        "description": "Change tax rate and verify validation on input formats"
+      },
+      {
+        "type": "action",
+        "description": "Configure SMTP email settings with valid and invalid inputs"
+      },
+      {
+        "type": "assertion",
+        "description": "Validation error shown for invalid formats"
+      },
+      {
+        "type": "action",
+        "description": "Toggle dark/light theme and reload page"
+      },
+      {
+        "type": "assertion",
+        "description": "Theme preference is remembered across sessions"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "File Upload Retry on Failure and Size Limitation",
+    "description": "Verify that file uploads (e.g. salary receipts) respect the 10MB limit and automatically retry a few times upon transient failures.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to upload a file larger than 10MB"
+      },
+      {
+        "type": "assertion",
+        "description": "Upload is rejected immediately with user-friendly error toast"
+      },
+      {
+        "type": "action",
+        "description": "During upload of valid file, simulate transient network failure"
+      },
+      {
+        "type": "assertion",
+        "description": "Upload automatically retries up to configured attempts"
+      },
+      {
+        "type": "assertion",
+        "description": "On success toast notification confirms upload"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Real-time Data Synchronization Across Modules",
+    "description": "Verify that changes in Projects, Invoices, Salaries, Team Requests, and Budgets propagate in real-time to all affected UI components via Supabase subscriptions.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login and open multiple module pages/tabs simultaneously"
+      },
+      {
+        "type": "action",
+        "description": "Update data in one module via API or UI (e.g., add invoice, update salary)"
+      },
+      {
+        "type": "assertion",
+        "description": "Changes appear in real-time on other open pages and dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "No stale or cached outdated data remains visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Comprehensive Form Input Validation with Zod",
+    "description": "Ensure all modal forms for CRUD operations validate input strictly using Zod schemas for types, formats, mandatory fields, and display helpful error messages.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open forms for adding/editing clients, projects, invoices, salaries, requests etc."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit empty or invalid data (e.g. malformed emails, negative numbers)"
+      },
+      {
+        "type": "assertion",
+        "description": "Forms prevent submission and show relevant validation error messages near inputs"
+      },
+      {
+        "type": "action",
+        "description": "Enter valid data and submit"
+      },
+      {
+        "type": "assertion",
+        "description": "Successful form submission proceeds and data is stored correctly"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Data Table Pagination, Sorting, Filtering and Export",
+    "description": "Verify tables used in various pages paginate data correctly with lazy loading, allow sorting and filtering, and export current views accurately.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to tables (clients, projects, invoices, salaries)"
+      },
+      {
+        "type": "action",
+        "description": "Trigger sorting by columns and verify row order changes correctly"
+      },
+      {
+        "type": "action",
+        "description": "Apply filters and observe filtered results in table"
+      },
+      {
+        "type": "action",
+        "description": "Paginate through results verifying data loads dynamically without overloading"
+      },
+      {
+        "type": "action",
+        "description": "Export current filtered and sorted view to CSV/JSON/PDF"
+      },
+      {
+        "type": "assertion",
+        "description": "Export files match filtered and sorted data in the table"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Error Handling with Toast Notifications and Preventing Data Loss",
+    "description": "Simulate various backend or network errors and verify user sees appropriate toast notifications and data is consistent without corruption.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate API failure during client creation"
+      },
+      {
+        "type": "assertion",
+        "description": "Error toast appears and form data is preserved for retry"
+      },
+      {
+        "type": "action",
+        "description": "Simulate network disconnection during invoice submission"
+      },
+      {
+        "type": "assertion",
+        "description": "Retry mechanism triggers automatically and notifies user"
+      },
+      {
+        "type": "assertion",
+        "description": "No duplicates or partial data saved in backend"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Calendar Integrations for Deadlines and Payments",
+    "description": "Verify deadlines, payment due dates, budget cycles, and salary payment dates correctly appear and sync in calendar view with proper notifications.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open calendar view"
+      },
+      {
+        "type": "action",
+        "description": "Add projects with milestones, invoices with due dates, budgets with cycles, salaries for payment dates"
+      },
+      {
+        "type": "assertion",
+        "description": "Events appear accurately on respective dates"
+      },
+      {
+        "type": "assertion",
+        "description": "Notifications trigger on upcoming deadlines and due dates"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Performance Testing for Dashboard and Tables",
+    "description": "Verify dashboard and tables comply with bundle size limit and performance benchmarks with correct lazy loading and smooth UI interactions.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Measure page bundle size on dashboard and clients table pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Bundle size is under 5MB as per spec"
+      },
+      {
+        "type": "action",
+        "description": "Load tables with large data sets"
+      },
+      {
+        "type": "assertion",
+        "description": "Pagination and lazy loading execute without lag or UI freeze"
+      }
+    ]
+  }
+]

@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "project": "Devs On Steroids Internal CRM",
+    "date": "2025-10-04",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "Devs On Steroids Internal CRM is a comprehensive, single-user internal web application designed specifically for the CEO to manage clients, projects, invoices, team assignments, salaries, internal requests, and budgets for the IT services and development agency. Developed with React.js, Tailwind CSS, and Supabase backend, it provides an integrated and responsive management tool focusing on custom-coded solutions tracking and internal operational efficiency.",
+  "core_goals": [
+    "Provide a centralized system to manage clients, projects, invoices, salaries, budgets, and internal team requests.",
+    "Enable seamless tracking of the full project lifecycle including quoting, execution, and invoicing.",
+    "Facilitate transparent financial and HR management including salary tracking and budget variance analysis.",
+    "Support real-time updates and notifications for critical deadlines and payment statuses.",
+    "Ensure a user-friendly and intuitive CEO-focused interface with dark/light mode and responsive design.",
+    "Implement secure single-user authentication and maintain data integrity with comprehensive validation and error handling.",
+    "Allow professional document generation (PDF invoices and quotations) with email delivery capability.",
+    "Enable data export and reporting with charts and analytics for strategic decision making."
+  ],
+  "key_features": [
+    "Supabase-based secure authentication system with single-user JWT login and reset functionality.",
+    "Dashboard with real-time statistics, charts and overview of CRM data including client metrics, revenue trends, and upcoming deadlines.",
+    "Client management with detailed client profiles, project associations, invoicing history, and notes.",
+    "Project management featuring drag-and-drop Kanban board, milestone tracking, status history, and hours logging per employee.",
+    "Comprehensive invoice and payment management with PDF generation, status tracking, partial payments, and automated reminders.",
+    "Features catalog for reusable services with pricing inputs and quote generation.",
+    "Budget tracking for monthly/quarterly periods with expense logging, variance alerts, and calendar integration.",
+    "Salary management for employees with monthly/annual summaries, payment histories, and receipt uploads.",
+    "Internal team request system with approval workflows, urgency tracking, Kanban boards, and due date notifications.",
+    "Reports and analytics providing multi-dimensional views including revenue by client/type, payment aging, employee performance, and budget overview with export options.",
+    "Settings management for company profile, tax rates, email configuration, backup, and theme toggle.",
+    "Responsive UI using Tailwind CSS with modal forms, tables with filtering and export, calendar view, and dark/light theme support.",
+    "Real-time data updates across all modules using Supabase Realtime subscriptions.",
+    "Client-side PDF generation for invoices and quotes with professional formatting using jsPDF.",
+    "Robust error handling with toast notifications, retry mechanisms, and validation via Zod."
+  ],
+  "user_flow_summary": [
+    "User logs in securely via single-user credentials; authentication protects all routes.",
+    "Upon login, user lands on dashboard showing an overview of KPIs, charts, and notifications.",
+    "User navigates sidebar to access Clients, Projects, Invoices, Features Catalog, Budgets, Salaries, Team Requests, Reports, and Settings.",
+    "From Clients, user can view and edit client details, see past/current projects, invoices and notes.",
+    "Projects module offers list and Kanban views; user can create/edit projects with milestones, assignments, and track statuses.",
+    "Invoice section enables invoice creation linked to projects/clients, PDF download, payment logging, and sending reminders.",
+    "Features Catalog allows managing reusable service entries and adding them to project quotes with price customization.",
+    "Budgets and Salaries sections let user set, track, and manage financial allocations and payments with calendar reminders.",
+    "Team Requests are logged, tracked via Kanban, and notifications are sent based on urgency and approval status.",
+    "Reports provide detailed filters and chart visualizations to inform business decisions, with export capabilities.",
+    "Settings enable management of company info, tax rates, email SMTP configuration, backups, and UI theme preferences."
+  ],
+  "validation_criteria": [
+    "All form inputs must pass Zod validation schemas ensuring data type and format correctness.",
+    "Unique constraints are enforced to prevent duplicate clients, invoices, salary entries, and team requests.",
+    "File uploads limited to 10MB with retry on failure and public URL to the Supabase Storage bucket.",
+    "Secure authentication ensures only authorized user access with JWT and row-level security in Supabase.",
+    "Real-time updates are verified across projects, invoices, salaries, team requests, and budgets using Supabase Realtime subscriptions.",
+    "PDFs generated for invoices and quotations exactly match the specified layout with correct fonts, borders, and alignment.",
+    "Comprehensive error handling displays user-friendly toast messages and prevents data corruption or loss.",
+    "Calendar integrations sync deadlines, payment due dates, salary and budget cycles correctly.",
+    "Budget overage notifications trigger when expenses exceed allocation by over 10%, preventing negative remaining balances.",
+    "Exported data (CSV/JSON/PDF) matches visible table filters and sorting accurately.",
+    "Dark/light mode toggle persists user preference across sessions.",
+    "Email notifications for reminders and alerts are sent reliably through Supabase Edge Functions with configured SMTP providers.",
+    "Performance benchmarks ensure tables paginate correctly with lazy loading, and pages bundle size remains under 5MB.",
+    "Testing coverage includes frontend CRUD operations, form validations, and Supabase query executions to ensure stability."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "React 18",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "React Query",
+      "React Router",
+      "Zustand",
+      "Zod",
+      "React Hook Form",
+      "Lucide React",
+      "React Hot Toast",
+      "Recharts",
+      "jsPDF",
+      "React Big Calendar",
+      "React Quill",
+      "@hello-pangea/dnd",
+      "@tanstack/react-table",
+      "@headlessui/react"
+    ],
+    "features": [
+      {
+        "name": "Authentication System",
+        "description": "Supabase-based authentication with JWT tokens, login/logout functionality, and protected routes",
+        "files": [
+          "src/components/auth/ProtectedRoute.tsx",
+          "src/pages/auth/Login.tsx",
+          "src/store/authStore.ts",
+          "src/lib/supabase.ts"
+        ]
+      },
+      {
+        "name": "Dashboard",
+        "description": "Main dashboard with statistics, charts, and overview of CRM data including revenue, projects, and client metrics",
+        "files": [
+          "src/pages/dashboard/Dashboard.tsx",
+          "src/components/charts"
+        ]
+      },
+      {
+        "name": "Client Management",
+        "description": "Complete client management system with CRUD operations, client profiles, and project associations",
+        "files": [
+          "src/pages/clients/Clients.tsx",
+          "src/components/modals/ClientModal.tsx"
+        ]
+      },
+      {
+        "name": "Project Management",
+        "description": "Project tracking with drag-and-drop Kanban board, project status management, and timeline tracking",
+        "files": [
+          "src/pages/projects/Projects.tsx",
+          "src/components/modals/ProjectModal.tsx"
+        ]
+      },
+      {
+        "name": "Invoice Management",
+        "description": "Invoice generation, PDF creation, payment tracking, and invoice status management",
+        "files": [
+          "src/pages/invoices/Invoices.tsx",
+          "src/components/modals/InvoiceModal.tsx"
+        ]
+      },
+      {
+        "name": "Features Catalog",
+        "description": "Catalog of reusable features/services for project quoting with categories, pricing, and descriptions",
+        "files": [
+          "src/pages/features/Features.tsx",
+          "src/components/modals/FeatureModal.tsx"
+        ]
+      },
+      {
+        "name": "Budget Management",
+        "description": "Budget tracking system with categories, expense management, and variance analysis",
+        "files": [
+          "src/pages/budgets/Budgets.tsx",
+          "src/components/modals/BudgetModal.tsx",
+          "src/components/modals/ExpenseModal.tsx"
+        ]
+      },
+      {
+        "name": "Salary Management",
+        "description": "Employee salary tracking, payment management, and salary history with bonus calculations",
+        "files": [
+          "src/pages/salaries/Salaries.tsx",
+          "src/components/modals/SalaryModal.tsx",
+          "src/components/EditSalaryModal.tsx"
+        ]
+      },
+      {
+        "name": "Team Requests",
+        "description": "Internal team request management system with approval workflow and status tracking",
+        "files": [
+          "src/pages/requests/Requests.tsx",
+          "src/components/modals/RequestModal.tsx"
+        ]
+      },
+      {
+        "name": "Reports & Analytics",
+        "description": "Comprehensive reporting system with charts, analytics, and data visualization using Recharts",
+        "files": [
+          "src/pages/reports/Reports.tsx",
+          "src/components/charts"
+        ]
+      },
+      {
+        "name": "Settings Management",
+        "description": "Application settings including profile management, theme toggle, backup settings, and system configuration",
+        "files": [
+          "src/pages/settings/Settings.tsx",
+          "src/components/ThemeToggle.tsx"
+        ]
+      },
+      {
+        "name": "Layout System",
+        "description": "Responsive layout with sidebar navigation, header with search and notifications, and mobile-first design",
+        "files": [
+          "src/components/layout/Layout.tsx",
+          "src/components/layout/Header.tsx",
+          "src/components/layout/Sidebar.tsx"
+        ]
+      },
+      {
+        "name": "Real-time Updates",
+        "description": "Supabase real-time subscriptions for live data updates across all CRM modules",
+        "files": [
+          "src/hooks/useRealTimeUpdates.ts"
+        ]
+      },
+      {
+        "name": "Error Handling",
+        "description": "Comprehensive error handling with error boundaries, toast notifications, and retry mechanisms",
+        "files": [
+          "src/components/ErrorBoundary.tsx",
+          "src/utils/errorHandler.ts",
+          "src/hooks/useRetry.ts"
+        ]
+      },
+      {
+        "name": "Theme System",
+        "description": "Dark/light mode toggle with persistent theme preferences using Zustand store",
+        "files": [
+          "src/hooks/useTheme.ts",
+          "src/components/ThemeToggle.tsx"
+        ]
+      },
+      {
+        "name": "Form Management",
+        "description": "Form handling with React Hook Form, Zod validation, and modal-based forms for all CRUD operations",
+        "files": [
+          "src/components/forms",
+          "src/components/modals"
+        ]
+      },
+      {
+        "name": "Data Tables",
+        "description": "Advanced data tables with sorting, filtering, pagination, and export functionality using TanStack Table",
+        "files": [
+          "src/components/tables"
+        ]
+      },
+      {
+        "name": "Loading States",
+        "description": "Loading spinners and skeleton states for better user experience during data fetching",
+        "files": [
+          "src/components/LoadingSpinner.tsx",
+          "src/components/Empty.tsx"
+        ]
+      },
+      {
+        "name": "Database Schema",
+        "description": "PostgreSQL database schema with tables for clients, projects, invoices, employees, budgets, and more",
+        "files": [
+          "supabase/migrations/001_initial_schema.sql",
+          "supabase/migrations/003_budget_tables.sql",
+          "supabase/migrations/010_add_missing_features_columns.sql"
+        ]
+      },
+      {
+        "name": "PDF Generation",
+        "description": "Client-side PDF generation for invoices and quotes using jsPDF with professional formatting",
+        "files": [
+          "src/pages/invoices/Invoices.tsx",
+          "src/pages/features/Features.tsx"
+        ]
+      }
+    ]
+  }
+}

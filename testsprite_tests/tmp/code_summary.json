@@ -1,0 +1,126 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "React 18",
+    "Vite",
+    "Tailwind CSS",
+    "Supabase",
+    "PostgreSQL",
+    "React Query",
+    "React Router",
+    "Zustand",
+    "Zod",
+    "React Hook Form",
+    "Lucide React",
+    "React Hot Toast",
+    "Recharts",
+    "jsPDF",
+    "React Big Calendar",
+    "React Quill",
+    "@hello-pangea/dnd",
+    "@tanstack/react-table",
+    "@headlessui/react"
+  ],
+  "features": [
+    {
+      "name": "Authentication System",
+      "description": "Supabase-based authentication with JWT tokens, login/logout functionality, and protected routes",
+      "files": ["src/components/auth/ProtectedRoute.tsx", "src/pages/auth/Login.tsx", "src/store/authStore.ts", "src/lib/supabase.ts"]
+    },
+    {
+      "name": "Dashboard",
+      "description": "Main dashboard with statistics, charts, and overview of CRM data including revenue, projects, and client metrics",
+      "files": ["src/pages/dashboard/Dashboard.tsx", "src/components/charts"]
+    },
+    {
+      "name": "Client Management",
+      "description": "Complete client management system with CRUD operations, client profiles, and project associations",
+      "files": ["src/pages/clients/Clients.tsx", "src/components/modals/ClientModal.tsx"]
+    },
+    {
+      "name": "Project Management",
+      "description": "Project tracking with drag-and-drop Kanban board, project status management, and timeline tracking",
+      "files": ["src/pages/projects/Projects.tsx", "src/components/modals/ProjectModal.tsx"]
+    },
+    {
+      "name": "Invoice Management",
+      "description": "Invoice generation, PDF creation, payment tracking, and invoice status management",
+      "files": ["src/pages/invoices/Invoices.tsx", "src/components/modals/InvoiceModal.tsx"]
+    },
+    {
+      "name": "Features Catalog",
+      "description": "Catalog of reusable features/services for project quoting with categories, pricing, and descriptions",
+      "files": ["src/pages/features/Features.tsx", "src/components/modals/FeatureModal.tsx"]
+    },
+    {
+      "name": "Budget Management",
+      "description": "Budget tracking system with categories, expense management, and variance analysis",
+      "files": ["src/pages/budgets/Budgets.tsx", "src/components/modals/BudgetModal.tsx", "src/components/modals/ExpenseModal.tsx"]
+    },
+    {
+      "name": "Salary Management",
+      "description": "Employee salary tracking, payment management, and salary history with bonus calculations",
+      "files": ["src/pages/salaries/Salaries.tsx", "src/components/modals/SalaryModal.tsx", "src/components/EditSalaryModal.tsx"]
+    },
+    {
+      "name": "Team Requests",
+      "description": "Internal team request management system with approval workflow and status tracking",
+      "files": ["src/pages/requests/Requests.tsx", "src/components/modals/RequestModal.tsx"]
+    },
+    {
+      "name": "Reports & Analytics",
+      "description": "Comprehensive reporting system with charts, analytics, and data visualization using Recharts",
+      "files": ["src/pages/reports/Reports.tsx", "src/components/charts"]
+    },
+    {
+      "name": "Settings Management",
+      "description": "Application settings including profile management, theme toggle, backup settings, and system configuration",
+      "files": ["src/pages/settings/Settings.tsx", "src/components/ThemeToggle.tsx"]
+    },
+    {
+      "name": "Layout System",
+      "description": "Responsive layout with sidebar navigation, header with search and notifications, and mobile-first design",
+      "files": ["src/components/layout/Layout.tsx", "src/components/layout/Header.tsx", "src/components/layout/Sidebar.tsx"]
+    },
+    {
+      "name": "Real-time Updates",
+      "description": "Supabase real-time subscriptions for live data updates across all CRM modules",
+      "files": ["src/hooks/useRealTimeUpdates.ts"]
+    },
+    {
+      "name": "Error Handling",
+      "description": "Comprehensive error handling with error boundaries, toast notifications, and retry mechanisms",
+      "files": ["src/components/ErrorBoundary.tsx", "src/utils/errorHandler.ts", "src/hooks/useRetry.ts"]
+    },
+    {
+      "name": "Theme System",
+      "description": "Dark/light mode toggle with persistent theme preferences using Zustand store",
+      "files": ["src/hooks/useTheme.ts", "src/components/ThemeToggle.tsx"]
+    },
+    {
+      "name": "Form Management",
+      "description": "Form handling with React Hook Form, Zod validation, and modal-based forms for all CRUD operations",
+      "files": ["src/components/forms", "src/components/modals"]
+    },
+    {
+      "name": "Data Tables",
+      "description": "Advanced data tables with sorting, filtering, pagination, and export functionality using TanStack Table",
+      "files": ["src/components/tables"]
+    },
+    {
+      "name": "Loading States",
+      "description": "Loading spinners and skeleton states for better user experience during data fetching",
+      "files": ["src/components/LoadingSpinner.tsx", "src/components/Empty.tsx"]
+    },
+    {
+      "name": "Database Schema",
+      "description": "PostgreSQL database schema with tables for clients, projects, invoices, employees, budgets, and more",
+      "files": ["supabase/migrations/001_initial_schema.sql", "supabase/migrations/003_budget_tables.sql", "supabase/migrations/010_add_missing_features_columns.sql"]
+    },
+    {
+      "name": "PDF Generation",
+      "description": "Client-side PDF generation for invoices and quotes using jsPDF with professional formatting",
+      "files": ["src/pages/invoices/Invoices.tsx", "src/pages/features/Features.tsx"]
+    }
+  ]
+}
